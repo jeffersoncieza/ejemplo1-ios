@@ -14,6 +14,15 @@ class ApiService: NSObject {
     
     static let sharedInstance = ApiService()
     
+    func listPerson(_ completion: @escaping (Error?, Int, JSON?) -> ()) {
+        request(url: ApiConstant.LIST_PERSON, httpMethod: HTTPMethod.get, parameters: nil, headers: nil, completion: completion)
+    }
+    
+    func createPerson(_ parameters: Parameters, _ completion: @escaping (Error?, Int, JSON?) ->()) {
+        print("plop")
+        request(url: ApiConstant.CREATE_PERSON, httpMethod: HTTPMethod.post, parameters: parameters, headers: nil, completion: completion)
+    }
+    
     // MARK: - Request for all methods
     func request(url: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?,
                  encoding: ParameterEncoding? = JSONEncoding.default, completion: @escaping (Error?, Int, JSON?) -> ()) {

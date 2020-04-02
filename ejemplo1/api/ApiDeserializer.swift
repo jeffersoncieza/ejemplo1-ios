@@ -11,6 +11,15 @@ import SwiftyJSON
 
 class ApiDeserializer {
     
+    static func json(data: Data) -> JSON? {
+        do {
+            return try JSON(data: data)
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
+    
     static func object<T: Decodable>(data: Data) -> T? {
         do {
             let responseJSON = try JSON(data: data)
